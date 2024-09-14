@@ -1,0 +1,3497 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-64247520-9"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-64247520-9');
+</script>
+
+<title>SF-OS　ver0.4P1</title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+<link rel="icon" href="favicon.png">
+<link href="https://cdn.jsdelivr.net/npm/jspanel4@4.5.0/dist/jspanel.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/janmarkuslanger/attention.js/dist/attention.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/@sjmc11/tourguidejs/dist/css/tour.min.css">
+<script src="https://unpkg.com/@sjmc11/tourguidejs/dist/tour.js"></script>
+
+<link rel="preload" href="architecture-2256489_1920.jpg" as="image">
+<link rel="preload" href="japan-217878_1920.jpg" as="image">
+<link rel="preload" href="kuala-lumpur-1820944_1920.jpg" as="image">
+<link rel="preload" href="new-york-city-336475_1920.jpg" as="image">
+<link rel="preload" href="maldives-3220702_1920.jpg" as="image">
+<link rel="preload" href="polynesia-3021072_1920.jpg" as="image">
+<link rel="preload" href="sea-1281685_1920.jpg" as="image">
+<link rel="preload" href="young-woman-1745173_1920.jpg" as="image">
+<link rel="preload" href="buildings-2297210_1920.jpg" as="image">
+<link rel="preload" href="new-york-2699520_1920.jpg" as="image">
+<link rel="preload" href="new-york-668616_1920.jpg" as="image">
+<link rel="preload" href="burj-khalifa-2212978_1920.jpg" as="image">
+
+
+
+<style>
+
+body {
+font-size: 110%;
+}
+
+.framemsg {
+font-size:20px;
+padding:10px;
+}
+
+.icon:active {
+background-color: #9b59b6;
+}
+
+/*
+.icon:hover {
+transition: transform 0.5s ease-out;
+-webkit-transform: rotate(-40deg);
+transform: rotate(-40deg);
+}
+*/
+
+.iconhover:hover {
+transition: transform 0.5s ease-out;
+-webkit-transform: rotate(-40deg);
+transform: rotate(-40deg);
+}
+
+.desktopicon:hover{
+transform:scale(1.2);
+transition-duration: 0.3s;
+/* opacity: 0.6; */
+}
+
+
+.Header {
+position: fixed; /* ヘッダーを固定する */
+top: 0; /* 上部から配置の基準位置を決める */
+left: 0; /* 左から配置の基準位置を決める */
+width: 100%; /* ヘッダーの横幅を指定する */
+height: 62px; /* ヘッダーの高さを指定する */
+padding: 8px; /* ヘッダーの余白を指定する(上下左右) */
+background-color: #c4c4c4aa; /* ヘッダーの背景色を指定する */
+color: #000000; /* フォントの色を指定する */
+}
+
+.iconarea {
+position: fixed; /* ヘッダーを固定する */
+top: 70px; /* 上部から配置の基準位置を決める */
+left: 0; /* 左から配置の基準位置を決める */
+width: 100%;
+height: calc(100vh - 70px);
+}
+
+#horizontal_scroll {
+overflow-x: scroll;
+-webkit-overflow-scrolling: touch;
+padding: 0 0 3px 8px;
+display: -ms-flexbox;
+display: flex; }
+
+::-webkit-scrollbar {
+width: 10px;
+height: 10px;
+}
+
+/* orb.cssから好きな色を持ってきてください */
+::-webkit-scrollbar-thumb {
+border-radius: 3px;
+background:#849CE4;
+border:1px solid #B8C6C3;
+}
+
+::-webkit-scrollbar-thumb:active {
+border-radius: 3px;
+background:#9fda8b;
+}
+
+.modalsfos {
+padding: 5px;
+}
+
+#contextmenu{
+display:none;
+position:fixed;
+left:0px;
+top:0px;
+width:400px;
+height:300px;
+border:1px solid #000;
+background-color:#fff;
+overflow: hidden scroll;
+}
+#contextmenu li{
+cursor:pointer;
+}
+
+#contextheader{
+display:none;
+position:fixed;
+left:0px;
+top:0px;
+width:300px;
+height:150px;
+border:1px solid #000;
+background-color:#fff;
+overflow: hidden scroll;
+}
+#contextheader li{
+cursor:pointer;
+}
+
+
+
+.quickhd {
+padding: 8px 19px;
+margin: 0;
+color: #2c2c2f;
+background: #cde4ff;
+border-top: solid 5px #5989cf;
+border-bottom: solid 5px #5989cf;
+}
+
+.quickmoji {
+background: linear-gradient(transparent 0, #8effa1 0);
+padding: 3px;
+}
+
+#dskdesc {
+position: absolute;
+visibility: hidden;
+top: 20%;
+left: 20%;
+width: 69%;
+height: 30%;
+}
+
+.favmark {
+color: #E74C3C;
+}
+
+</style>
+
+<style>
+
+#modalmenu {
+width: 80%;
+height: 80%;
+padding: 20px;
+box-sizing: border-box;
+}
+
+#diaarea {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-start;
+align-items: flex-start;
+overflow-y: auto;
+height: calc(100% - 120px); /* ボタンの高さ分を引く */
+}
+
+#diaarea > div {
+margin: 5px;
+padding: 5px;
+cursor: pointer;
+display: flex;
+align-items: center;
+}
+
+#diaarea > div img {
+margin-right: 5px;
+}
+
+#diabtarea {
+display: flex;
+justify-content: center;
+margin-top: 20px;
+margin-bottom: 10px;
+
+}
+
+#diabt {
+padding: 10px 20px;
+font-size: 16px;
+}
+
+#mdhead {
+display : inline-block;
+color : #eeeeee; /* 文字の色 */
+font-size : 1.2rem; /* 文字のサイズ */
+letter-spacing : 4px; /* 文字間 */
+text-shadow :
+2px 2px 1px #393939,
+-2px 2px 1px #393939,
+2px -2px 1px #393939,
+-2px -2px 1px #393939,
+2px 0px 1px #393939,
+0px 2px 1px #393939,
+-2px 0px 1px #393939,
+0px -2px 1px #393939; /* 文字の影 */
+}
+
+</style>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sa-si-dev/tooltip/dist/tooltip.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/sa-si-dev/tooltip/dist/tooltip.min.js"></script>
+
+<script src="https://kit.fontawesome.com/9774032a98.js" crossorigin="anonymous"></script>
+<script src="animatedWebCursors.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/oxterisk/ztoaster/ztoaster.css" />
+<script src="https://cdn.jsdelivr.net/gh/oxterisk/ztoaster/ztoaster.js"></script>
+
+
+</head>
+<body style="background: url('https://sfosdemo.bitbucket.io/architecture-2256489_1920.jpg') no-repeat fixed; background-size: cover;">
+<script type="text/javascript" src="https://ad.xdomain.ne.jp/js/server-php.js"></script>
+<div class="Header" id="horizontal_scroll">
+<img class="icon iconhover" id="about" src="icons8-help-48.png" data-tooltip="system aori 1.97について">
+<img class="icon iconhover" id="mmenu" src="icons8-mmenu-48.png" data-tooltip="アプリメニュー">
+<img class="icon iconhover" id="cal" src="icons8-cal-48.png" data-tooltip="カレンダー">
+<!-- <img class="icon iconhover" id="news" src="icons8-news-48.png"> -->
+<img class="icon iconhover" id="bing" src="icons8-bing-48.png" data-tooltip="Bing検索">
+<img class="icon iconhover" id="mded" src="icons8-md-48.png" data-tooltip="MDエディタ">
+<img class="icon iconhover" id="imgur" src="icons8-imgur-48.png" data-tooltip="画像アップ">
+<img class="icon iconhover" id="helptbl" src="icons8-helptbl-48.png" data-tooltip="ヘルプテーブル">
+<img class="icon iconhover" id="txed" src="icons8-txed-48.png" data-tooltip="テキストエディタ">
+<img class="icon iconhover" id="jsed" src="icons8-jsed-48.png" data-tooltip="JSエディタ">
+<img class="icon iconhover" id="jsex" src="icons8-jsex-48.png" data-tooltip="JS簡易実行環境">
+<img class="icon iconhover" id="pyed" src="icons8-pyed-48.png" data-tooltip="Pythonエディタ">
+<img class="icon iconhover" id="bsed" src="icons8-bsed-48.png" data-tooltip="BASIC">
+<img class="icon iconhover" id="slmk" src="icons8-slmk-48.png" data-tooltip="スライドメーカ">
+<img class="icon iconhover" id="calc" src="icons8-calc-48.png" data-tooltip="電卓">
+<img class="icon iconhover" id="timg" src="icons8-image-48.png" data-tooltip="imageエディタ">
+<img class="icon iconhover" id="audio" src="icons8-audio-48.png" data-tooltip="mp3プレーヤ">
+<img class="icon iconhover" id="omap" src="icons8-omap-48.png" data-tooltip="地図検索">
+<img class="icon iconhover" id="zoom" src="icons8-zoom-48.png" data-tooltip="Zoom">
+<img class="icon iconhover" id="photob" src="icons8-photo2-48.png" data-tooltip="Photoエディタ">
+<img class="icon iconhover" id="speech" src="icons8-speech-48.png" data-tooltip="音声メモ">
+<img class="icon iconhover" id="sql" src="icons8-sql-48.png" data-tooltip="SQL テスト環境">
+<img class="icon iconhover" id="mdrdr" src="icons8-mdrdr-48.png" data-tooltip="マークダウンリーダ">
+<img class="icon iconhover" id="local" src="icons8-local-48.png" data-tooltip="ローカルストレージ">
+<img class="icon iconhover" id="tegaki" src="icons8-tegaki-48.png" data-tooltip="手書きメモ">
+<img class="icon iconhover" id="pdf" src="icons8-pdf-48.png" data-tooltip="簡易PDFビューワ">
+<img class="icon iconhover" id="exif" src="icons8-exif-48.png" data-tooltip="Exif表示ツール">
+<img class="icon iconhover" id="kuro" src="icons8-kuro-48.png" data-tooltip="色塗潰し＋クロップツール">
+<img class="icon iconhover" id="gifmake" src="icons8-gifmake-48.png" data-tooltip="アニメGIFツール">
+<img class="icon iconhover" id="rotate" src="icons8-rotate-48.png" data-tooltip="画像リサイズ回転">
+<img class="icon iconhover" id="textpad" src="icons8-textpad-48.png" data-tooltip="簡易メモ">
+<img class="icon iconhover" id="treem" src="icons8-treem-48.png" data-tooltip="ツリーメモ">
+<img class="icon iconhover" id="camera" src="icons8-camera-48.png" data-tooltip="カメラ">
+<img class="icon iconhover" id="voice" src="icons8-mike-48.png" data-tooltip="録音">
+<img class="icon iconhover" id="mock" src="icons8-mock-48.png" data-tooltip="モック作成ツール">
+<img class="icon iconhover" id="aim" src="icons8-aim-48.png" data-tooltip="MP4+MP3プレーヤー">
+<!-- <img class="icon iconhover" id="thum" src="icons8-thum-48.png" data-tooltip="動画⇒サムネイル"> -->
+<img class="icon iconhover" id="wiki" src="icons8-wiki-48.png" data-tooltip="ウィキペディア">
+<img class="icon iconhover" id="srec" src="icons8-srec-48.png" data-tooltip="スクリーンレコーダー">
+<img class="icon iconhover" id="block" src="icons8-block-48.png" data-tooltip="Blockly">
+<img class="icon iconhover" id="scap" src="icons8-scap-48.png" data-tooltip="スクリーンショット">
+<img class="icon iconhover" id="tetr" src="icons8-tetr-48.png" data-tooltip="テトリス">
+<img class="icon iconhover" id="rdtm" src="icons8-rdtm-48.png" data-tooltip="原稿読上げ時間測定">
+<img class="icon iconhover" id="remi" src="icons8-remi-48.png" data-tooltip="リマインダー">
+<img class="icon iconhover" id="mona" src="icons8-mona-48.png" data-tooltip="Monacoエディタ">
+<img class="icon iconhover" id="carb" src="icons8-carb-48.png" data-tooltip="カレンダー２">
+<img class="icon iconhover" id="stick" src="icons8-stick-48.png" data-tooltip="ふせんメモ">
+<img class="icon iconhover" id="yrep" src="icons8-yrep-48.png" data-tooltip="YouTube無限再生">
+<img class="icon iconhover" id="fotoa" src="icons8-fotoa-48.png" data-tooltip="画像編集A">
+<img class="icon iconhover" id="immj" src="icons8-immj-48.png" data-tooltip="画像文字入れ">
+<img class="icon iconhover" id="mdiff" src="icons8-mdiff-48.png" data-tooltip="DIFF">
+<img class="icon iconhover" id="noteb" src="icons8-noteb-48.png" data-tooltip="ノートパッド">
+<img class="icon iconhover" id="ocra" src="icons8-ocra-48.png" data-tooltip="OCRA">
+<img class="icon iconhover" id="pdfb" src="icons8-pdfb-48.png" data-tooltip="PDF表示B">
+<img class="icon iconhover" id="plgr" src="icons8-plgr-48.png" data-tooltip="プレイグラウンド">
+<img class="icon iconhover" id="writt" src="icons8-writt-48.png" data-tooltip="Writt">
+<img class="icon iconhover" id="memory" src="icons8-memory-48.png" data-tooltip="メモリーカード">
+<img class="icon iconhover" id="trollo" src="icons8-trollo-48.png" data-tooltip="trollo">
+<img class="icon iconhover" id="tmer" src="icons8-tmer-48.png" data-tooltip="タイマー">
+<img class="icon iconhover" id="svpn" src="icons8-svpn-48.png" data-tooltip="SVGtoPNG">
+<img class="icon iconhover" id="pnsv" src="icons8-pnsv-48.png" data-tooltip="PNGtoSVG">
+<img class="icon iconhover" id="kaimo" src="icons8-kaimo-48.png" data-tooltip="買い物リスト">
+<img class="icon iconhover" id="limv" src="icons8-limv-48.png" data-tooltip="ローカル画像">
+<img class="icon iconhover" id="wallp" src="icons8-wallp-48.png" data-tooltip="壁紙生成">
+<img class="icon iconhover" id="qrrd" src="icons8-qrrd-48.png" data-tooltip="QRリーダー">
+<img class="icon iconhover" id="qrgn" src="icons8-qrgn-48.png" data-tooltip="QR生成">
+<img class="icon iconhover" id="clck" src="icons8-clck-48.png" data-tooltip="アナログ時計">
+<img class="icon iconhover" id="mdpn" src="icons8-mdpn-48.png" data-tooltip="MD⇒PNG">
+<img class="icon iconhover" id="thumb" src="icons8-thumb-48.png" data-tooltip="動画⇒サムネイル">
+<img class="icon iconhover" id="ctrv" src="icons8-ctrv-48.png" data-tooltip="CTRL+Vビューワ">
+<img class="icon iconhover" id="eied" src="icons8-eied-48.png" data-tooltip="Easy Imageエディタ">
+<img class="icon iconhover" id="mppl" src="icons8-mppl-48.png" data-tooltip="Easy MP3プレーヤー">
+<img class="icon iconhover" id="nhkr" src="icons8-nhkr-48.png" data-tooltip="NHKラジオ">
+<img class="icon iconhover" id="ktgo" src="icons8-ktgo-48.png" data-tooltip="画像結合ツール">
+<img class="icon iconhover" id="cdpn" src="icons8-cdpn-48.png" data-tooltip="スニペット画像">
+<img class="icon iconhover" id="plte" src="icons8-plte-48.png" data-tooltip="パレット情報">
+<img class="icon iconhover" id="mdif" src="icons8-mdif-48.png" data-tooltip="メディア情報">
+<img class="icon iconhover" id="ikcs" src="icons8-ikcs-48.png" data-tooltip="iKeep">
+<img class="icon iconhover" id="pdfme" src="icons8-pdfme-48.png" data-tooltip="画像⇒PDF">
+<img class="icon iconhover" id="leafh" src="icons8-leafh-48.png" data-tooltip="高機能マップ">
+<img class="icon iconhover" id="compr" src="icons8-compr-48.png" data-tooltip="圧縮解凍">
+<img class="icon iconhover" id="nfizz" src="icons8-nfizz-48.png" data-tooltip="ノートFizz">
+<img class="icon iconhover" id="bnote" src="icons8-bnote-48.png" data-tooltip="Bノート">
+<img class="icon iconhover" id="edlfs" src="icons8-edlfs-48.png" data-tooltip="ローカルノート">
+<img class="icon iconhover" id="sccal" src="icons8-sccal-48.png" data-tooltip="関数電卓">
+<img class="icon iconhover" id="emujs" src="icons8-emujs-48.png" data-tooltip="エミュレータ">
+<img class="icon iconhover" id="ocrpd" src="icons8-ocrpd-48.png" data-tooltip="PDF-OCR">
+<img class="icon iconhover" id="biwk" src="icons8-biwk-48.png" data-tooltip="電子書籍リーダ">
+<img class="icon iconhover" id="chcnt" src="icons8-chcnt-48.png" data-tooltip="カウント文字数">
+<img class="icon iconhover" id="imgly" src="icons8-imgly-48.png" data-tooltip="画像レイヤエディタ">
+<img class="icon iconhover" id="sbimg" src="icons8-sbimg-48.png" data-tooltip="画像比較ツール">
+<img class="icon iconhover" id="sbsvd" src="icons8-sbsvd-48.png" data-tooltip="SBS動画プレーヤ">
+<img class="icon iconhover" id="vdjpg" src="icons8-vdjpg-48.png" data-tooltip="MP4キャプチャー">
+<img class="icon iconhover" id="wpjpg" src="icons8-wpjpg-48.png" data-tooltip="WebP⇒Jpeg">
+<img class="icon iconhover" id="smde" src="icons8-smde-48.png" data-tooltip="簡易MDエディタ">
+<img class="icon iconhover" id="svged" src="icons8-svged-48.png" data-tooltip="SVGエディタ">
+<img class="icon iconhover" id="monac" src="icons8-monac-48.png" data-tooltip="Monaco新エディタ">
+<img class="icon iconhover" id="sprd" src="icons8-sprd-48.png" data-tooltip="簡易スプレッドシート">
+<img class="icon iconhover" id="fotoe" src="icons8-fotoe-48.png" data-tooltip="フォトエディタ">
+<img class="icon iconhover" id="plhd" src="icons8-plhd-48.png" data-tooltip="Placehold">
+<img class="icon iconhover" id="dyncl" src="icons8-dyncl-48.png" data-tooltip="チェックリスト生成">
+<img class="icon iconhover" id="rainr" src="icons8-rainr-48.png" data-tooltip="雨雲レーダー">
+<img class="icon iconhover" id="icbc" src="icons8-icbc-48.png" data-tooltip="簡易画像結合">
+<img class="icon iconhover" id="bmgn" src="icons8-bmgn-48.png" data-tooltip="Bookmarklet変換ツール">
+<img class="icon iconhover" id="mdep" src="icons8-mdep-48.png" data-tooltip="MD⇒Epubエディタ">
+<img class="icon iconhover" id="fused" src="icons8-fused-48.png" data-tooltip="ふせんドラッグ">
+<img class="icon iconhover" id="pdim" src="icons8-pdim-48.png" data-tooltip="PDF=>jpeg">
+<img class="icon iconhover" id="mdpl" src="icons8-mdpl-48.png" data-tooltip="メディアプレイリスト">
+<img class="icon iconhover" id="hted" src="icons8-hted-48.png" data-tooltip="簡易HTMLエディタ">
+<img class="icon iconhover" id="dgcl" src="icons8-dgcl-48.png" data-tooltip="デジタル時計">
+<img class="icon iconhover" id="rpch" src="icons8-rpch-48.png" data-tooltip="文字列置換">
+<img class="icon iconhover" id="emcb" src="icons8-emcb-48.png" data-tooltip="Emojiコピー">
+<img class="icon iconhover" id="hima" src="icons8-hima-48.png" data-tooltip="ひまわり画像">
+<img class="icon iconhover" id="csvw" src="icons8-csvw-48.png" data-tooltip="CSVビューワ">
+<img class="icon iconhover" id="sjmk" src="icons8-sjmk-48.png" data-tooltip="SJISファイル作成">
+<img class="icon iconhover" id="kmzv" src="icons8-kmzv-48.png" data-tooltip="KMZビューワ">
+<img class="icon iconhover" id="sjut" src="icons8-sjut-48.png" data-tooltip="SJIS-UTF8変換">
+<img class="icon iconhover" id="ango" src="icons8-ango-48.png" data-tooltip="暗号化メモ">
+<img class="icon iconhover" id="txmd" src="icons8-txmd-48.png" data-tooltip="簡易マークダウン変換">
+<img class="icon iconhover" id="logos" src="icons8-logos-48.png" data-tooltip="簡易アイコンエディタ">
+<img class="icon iconhover" id="wcal" src="icons8-wcal-48.png" data-tooltip="週間スケジュール">
+<img class="icon iconhover" id="jskey" src="icons8-jskey-48.png" data-tooltip="JSMacro Keypad">
+<img class="icon iconhover" id="cvdr" src="icons8-cvdr-48.png" data-tooltip="簡易描画">
+<img class="icon iconhover" id="cdpa" src="icons8-cdpa-48.png" data-tooltip="Codepenアプリ1">
+<img class="icon iconhover" id="cdpb" src="icons8-cdpb-48.png" data-tooltip="Codepenアプリ2">
+<img class="icon iconhover" id="cdpc" src="icons8-cdpc-48.png" data-tooltip="Codepenアプリ3">
+<img class="icon iconhover" id="repa" src="icons8-repa-48.png" data-tooltip="Repl.itアプリA">
+<img class="icon iconhover" id="repb" src="icons8-repb-48.png" data-tooltip="Repl.itアプリB">
+<img class="icon iconhover" id="repc" src="icons8-repc-48.png" data-tooltip="Repl.itアプリC">
+</div>
+<div class="iconarea" id="iconarea"></div>
+
+<div id="dskdesc"></div>
+
+<div id="contextmenu"></div>
+<div id="contextheader"></div>
+
+<dialog id="modalmenu">
+<div id="mdhead"> アプリメニュー</div>
+<div id="diaarea">
+</div>
+<div id="diabtarea">
+<button id="diabt">閉じる</button>
+</div>
+</dialog>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jspanel4@4.5.0/dist/jspanel.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspanel4@4.5.0/dist/extensions/modal/jspanel.modal.js"></script>
+
+
+<script>
+
+var sumflg = "off";
+
+// menumodal
+
+var mmenu = document.getElementById("mmenu");
+
+//直接関数を記述して登録する
+mmenu.addEventListener( "click" , function () {
+
+var mmenuwk = '';
+if (favapp != 'none') {
+favapparr.forEach(function(e){
+
+console.log(e.id);
+console.log(e.icon);
+console.log(e.name);
+var linkwk = '<img src=\"'+e.icon;
+linkwk += '\" width=\"48\" height=\"48\">';
+
+mmenuwk += '<div onclick=\"cticonm(\''+e.id+'\')\">'+linkwk+'<span class=\"favmark\">&nbsp;★&nbsp;</span>'+e.name+'</div>'+'\n';
+
+
+});
+
+
+// mmenuwk += '<BR>'+'\n';
+
+}
+
+var triggerm = document.querySelectorAll('.Header > .icon');
+triggerm.forEach(function(icondata) {
+
+console.log(icondata.id);
+console.log(icondata.src.match(".+/(.+?)([\?#;].*)?$")[1]);
+console.log(icondata.getAttribute('data-tooltip'));
+var linkwk = '<img src=\"'+icondata.src.match(".+/(.+?)([\?#;].*)?$")[1];
+linkwk += '\" width=\"48\" height=\"48\">';
+mmenuwk += '<div onclick=\"cticonm(\''+icondata.id+'\')\">'+linkwk+'&nbsp'+icondata.getAttribute('data-tooltip')+'</div>'+'\n';
+
+
+});
+console.log(mmenuwk);
+
+document.getElementById('diaarea').innerHTML = mmenuwk;
+
+
+document.getElementById('modalmenu').showModal();
+} , false );
+
+document.getElementById('diabt').addEventListener('click',(e)=>{
+document.getElementById('modalmenu').close();
+});
+
+
+
+//------- modal start -----------
+
+
+jsPanel.modal.create({
+headerTitle: 'SF-OS',
+content: '<div class="modalsfos">' +
+'<img src="sfos.png"><hr>' +
+'<h4>SF-OSのデモにようこそ</h4>' +
+'<div>' +
+'<h6>SF-OS is Simply Fake Desktop OS based JSPanel</h6>' +
+'<h6>SF-OS ver0.4P1 Convert external IDE into user Fake-App 2022/06/01</h6>' +
+'</div>'+
+'</div>',
+
+position: 'center 50 50', theme: 'info',
+
+onclosed: function(panel, closedByUser) {
+// setTimeout(function(){reminder();},30000);
+tg.start();
+}
+
+
+});
+
+//------- modal end -----------
+
+
+//------- frame 生成関数 start -----------
+
+
+function seisei(fname,furl) {
+
+var randomLeft = Math.floor( Math.random() * 11 )*10+20;
+var randomTop = Math.floor( Math.random() * 11 )*10+70;
+
+var frameWidth;
+var frameHeight;
+if (window.innerWidth > 700) {
+frameWidth = Math.floor(window.innerWidth/2);
+} else {
+frameWidth = 320;
+};
+if (window.innerHeight > 500) {
+frameHeight = Math.floor(window.innerHeight/2);
+} else {
+frameHeight = 220;
+};
+
+var frameparm;
+frameparm = frameWidth+" "+frameHeight;
+
+
+jsPanel.create({
+headerTitle: fname,
+panelSize: frameparm,
+position: {
+my: "left-top",
+at: "left-top",
+offsetX: randomLeft,
+offsetY: randomTop
+},
+content: '<iframe src="'+furl+'" style="width: 100%; height: 100%;"></iframe>',
+});
+
+
+}
+
+//------- frame 生成関数 end -----------
+
+
+//------- frame start ------------
+
+var repc = document.getElementById("repc");
+
+//直接関数を記述して登録する
+repc.addEventListener( "click" , function () {
+var appname;
+if (localStorage.getItem(repctooltipkey) != 'none') {
+appname = 'Repl.it - '+localStorage.getItem(repctooltipkey);
+} else {
+appname = 'Repl.itアプリC';
+};
+seisei(appname,'./repc/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var repb = document.getElementById("repb");
+
+//直接関数を記述して登録する
+repb.addEventListener( "click" , function () {
+var appname;
+if (localStorage.getItem(repbtooltipkey) != 'none') {
+appname = 'Repl.it - '+localStorage.getItem(repbtooltipkey);
+} else {
+appname = 'Repl.itアプリB';
+};
+seisei(appname,'./repb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var repa = document.getElementById("repa");
+
+//直接関数を記述して登録する
+repa.addEventListener( "click" , function () {
+var appname;
+if (localStorage.getItem(repatooltipkey) != 'none') {
+appname = 'Repl.it - '+localStorage.getItem(repatooltipkey);
+} else {
+appname = 'Repl.itアプリA';
+};
+seisei(appname,'./repa/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var cdpc = document.getElementById("cdpc");
+
+//直接関数を記述して登録する
+cdpc.addEventListener( "click" , function () {
+var appname;
+if (localStorage.getItem(cdp3tooltipkey) != 'none') {
+appname = 'Codepen - '+localStorage.getItem(cdp3tooltipkey);
+} else {
+appname = 'Codepenアプリ3';
+};
+seisei(appname,'./cdpc/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var cdpb = document.getElementById("cdpb");
+
+//直接関数を記述して登録する
+cdpb.addEventListener( "click" , function () {
+var appname;
+if (localStorage.getItem(cdp2tooltipkey) != 'none') {
+appname = 'Codepen - '+localStorage.getItem(cdp2tooltipkey);
+} else {
+appname = 'Codepenアプリ2';
+};
+seisei(appname,'./cdpb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var cdpa = document.getElementById("cdpa");
+
+//直接関数を記述して登録する
+cdpa.addEventListener( "click" , function () {
+var appname;
+if (localStorage.getItem(cdp1tooltipkey) != 'none') {
+appname = 'Codepen - '+localStorage.getItem(cdp1tooltipkey);
+} else {
+appname = 'Codepenアプリ1';
+};
+seisei(appname,'./cdpa/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var cvdr= document.getElementById("cvdr");
+
+//直接関数を記述して登録する
+cvdr.addEventListener( "click" , function () {
+seisei('簡易描画','./cvdr/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var jskey= document.getElementById("jskey");
+
+//直接関数を記述して登録する
+jskey.addEventListener( "click" , function () {
+seisei('JSMacro Keypad','./jskey/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var wcal= document.getElementById("wcal");
+
+//直接関数を記述して登録する
+wcal.addEventListener( "click" , function () {
+seisei('週間スケジュール','./wcal/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var logos= document.getElementById("logos");
+
+//直接関数を記述して登録する
+logos.addEventListener( "click" , function () {
+seisei('簡易アイコンエディタ','./logos/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var txmd= document.getElementById("txmd");
+
+//直接関数を記述して登録する
+txmd.addEventListener( "click" , function () {
+seisei('簡易マークダウン変換','./txmd/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var ango= document.getElementById("ango");
+
+//直接関数を記述して登録する
+ango.addEventListener( "click" , function () {
+seisei('暗号化メモ','./ango/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sjut= document.getElementById("sjut");
+
+//直接関数を記述して登録する
+sjut.addEventListener( "click" , function () {
+seisei('SJIS-UTF8変換','./sjut/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var kmzv= document.getElementById("kmzv");
+
+//直接関数を記述して登録する
+kmzv.addEventListener( "click" , function () {
+seisei('KMZビューワ','./kmzv/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sjmk= document.getElementById("sjmk");
+
+//直接関数を記述して登録する
+sjmk.addEventListener( "click" , function () {
+seisei('SJISファイル作成','./sjmk/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var csvw= document.getElementById("csvw");
+
+//直接関数を記述して登録する
+csvw.addEventListener( "click" , function () {
+seisei('CSVビューワ','./csvw/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var hima= document.getElementById("hima");
+
+//直接関数を記述して登録する
+hima.addEventListener( "click" , function () {
+seisei('ひまわり画像','./hima/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var emcb= document.getElementById("emcb");
+
+//直接関数を記述して登録する
+emcb.addEventListener( "click" , function () {
+seisei('Emojiコピー','./emcb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var rpch= document.getElementById("rpch");
+
+//直接関数を記述して登録する
+rpch.addEventListener( "click" , function () {
+seisei('文字列置換','./rpch/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var dgcl= document.getElementById("dgcl");
+
+//直接関数を記述して登録する
+dgcl.addEventListener( "click" , function () {
+seisei('デジタル時計','./dgcl/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var hted= document.getElementById("hted");
+
+//直接関数を記述して登録する
+hted.addEventListener( "click" , function () {
+seisei('簡易HTMLエディタ','./hted/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mdpl= document.getElementById("mdpl");
+
+//直接関数を記述して登録する
+mdpl.addEventListener( "click" , function () {
+seisei('メディアプレイリスト','./mdpl/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var pdim= document.getElementById("pdim");
+
+//直接関数を記述して登録する
+pdim.addEventListener( "click" , function () {
+seisei('PDF=>JPEG','./pdim/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var fused= document.getElementById("fused");
+
+//直接関数を記述して登録する
+fused.addEventListener( "click" , function () {
+seisei('ふせんドラッグ','./fused/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mdep= document.getElementById("mdep");
+
+//直接関数を記述して登録する
+mdep.addEventListener( "click" , function () {
+seisei('MD⇒Epubエディタ','./mdep/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var bmgn= document.getElementById("bmgn");
+
+//直接関数を記述して登録する
+bmgn.addEventListener( "click" , function () {
+seisei('Bookmarklet変換ツール','./bmgn/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var icbc= document.getElementById("icbc");
+
+//直接関数を記述して登録する
+icbc.addEventListener( "click" , function () {
+seisei('簡易画像結合','./icbc/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var rainr= document.getElementById("rainr");
+
+//直接関数を記述して登録する
+rainr.addEventListener( "click" , function () {
+seisei('雨雲レーダー','./rainr/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var dyncl = document.getElementById("dyncl");
+
+//直接関数を記述して登録する
+dyncl.addEventListener( "click" , function () {
+seisei('チェックリスト生成','./dyncl/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var plhd = document.getElementById("plhd");
+
+//直接関数を記述して登録する
+plhd.addEventListener( "click" , function () {
+seisei('Placehold','./plhd/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var fotoe= document.getElementById("fotoe");
+
+//直接関数を記述して登録する
+fotoe.addEventListener( "click" , function () {
+seisei('フォトエディタ','./fotoe/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sprd= document.getElementById("sprd");
+
+//直接関数を記述して登録する
+sprd.addEventListener( "click" , function () {
+seisei('簡易スプレッドシート','./sprd/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var monac= document.getElementById("monac");
+
+//直接関数を記述して登録する
+monac.addEventListener( "click" , function () {
+seisei('Monaco新エディタ','./monac/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var svged= document.getElementById("svged");
+
+//直接関数を記述して登録する
+svged.addEventListener( "click" , function () {
+seisei('SVGエディタ','./svged/editor/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var smde= document.getElementById("smde");
+
+//直接関数を記述して登録する
+smde.addEventListener( "click" , function () {
+seisei('簡易MDエディタ','./smde/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var wpjpg= document.getElementById("wpjpg");
+
+//直接関数を記述して登録する
+wpjpg.addEventListener( "click" , function () {
+seisei('WebP⇒Jpeg','./wpjpg/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var vdjpg= document.getElementById("vdjpg");
+
+//直接関数を記述して登録する
+vdjpg.addEventListener( "click" , function () {
+seisei('MP4キャプチャー','./vdjpg/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sbsvd= document.getElementById("sbsvd");
+
+//直接関数を記述して登録する
+sbsvd.addEventListener( "click" , function () {
+seisei('SBS動画プレーヤ','./sbsvd/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sbimg= document.getElementById("sbimg");
+
+//直接関数を記述して登録する
+sbimg.addEventListener( "click" , function () {
+seisei('画像比較ツール','./sbimg/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var imgly= document.getElementById("imgly");
+
+//直接関数を記述して登録する
+imgly.addEventListener( "click" , function () {
+seisei('画像レイヤエディタ','./imgly/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var chcnt= document.getElementById("chcnt");
+
+//直接関数を記述して登録する
+chcnt.addEventListener( "click" , function () {
+seisei('カウント文字数','./chcnt/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var biwk= document.getElementById("biwk");
+
+//直接関数を記述して登録する
+biwk.addEventListener( "click" , function () {
+seisei('電子書籍リーダ','./biwk/bibi/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var ocrpd= document.getElementById("ocrpd");
+
+//直接関数を記述して登録する
+ocrpd.addEventListener( "click" , function () {
+seisei('PDF-OCR','./ocrpd/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var emujs= document.getElementById("emujs");
+
+//直接関数を記述して登録する
+emujs.addEventListener( "click" , function () {
+seisei('エミュレータ','./emujs/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sccal= document.getElementById("sccal");
+
+//直接関数を記述して登録する
+sccal.addEventListener( "click" , function () {
+seisei('関数電卓','./sccal/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var edlfs= document.getElementById("edlfs");
+
+//直接関数を記述して登録する
+edlfs.addEventListener( "click" , function () {
+seisei('ローカルノート','./edlfs/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var bnote= document.getElementById("bnote");
+
+//直接関数を記述して登録する
+bnote.addEventListener( "click" , function () {
+seisei('Bノート','./bnote/bnote.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var nfizz= document.getElementById("nfizz");
+
+//直接関数を記述して登録する
+nfizz.addEventListener( "click" , function () {
+seisei('ノートFizz','./nfizz/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var compr = document.getElementById("compr");
+
+//直接関数を記述して登録する
+compr.addEventListener( "click" , function () {
+seisei('圧縮解凍','./compr/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var leafh = document.getElementById("leafh");
+
+//直接関数を記述して登録する
+leafh.addEventListener( "click" , function () {
+seisei('高機能マップ','./leafh/me.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var pdfme = document.getElementById("pdfme");
+
+//直接関数を記述して登録する
+pdfme.addEventListener( "click" , function () {
+seisei('複数画像⇒PDF','./pdfme/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var ikcs = document.getElementById("ikcs");
+
+//直接関数を記述して登録する
+ikcs.addEventListener( "click" , function () {
+seisei('iKeep','./ikcs/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mdif = document.getElementById("mdif");
+
+//直接関数を記述して登録する
+mdif.addEventListener( "click" , function () {
+seisei('メディア情報','./mdifa/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var plte = document.getElementById("plte");
+
+//直接関数を記述して登録する
+plte.addEventListener( "click" , function () {
+seisei('パレット情報','./plte/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var cdpn = document.getElementById("cdpn");
+
+//直接関数を記述して登録する
+cdpn.addEventListener( "click" , function () {
+seisei('スニペット画像','./cdpn/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var ktgo = document.getElementById("ktgo");
+
+//直接関数を記述して登録する
+ktgo.addEventListener( "click" , function () {
+seisei('画像結合ツール','./ktgo/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var nhkr = document.getElementById("nhkr");
+
+//直接関数を記述して登録する
+nhkr.addEventListener( "click" , function () {
+seisei('NHKラジオ','./nhkr/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mppl = document.getElementById("mppl");
+
+//直接関数を記述して登録する
+mppl.addEventListener( "click" , function () {
+seisei('Easy MP3プレーヤー','./mppl/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var eied = document.getElementById("eied");
+
+//直接関数を記述して登録する
+eied.addEventListener( "click" , function () {
+seisei('Easy Imageエディタ','./eied/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var ctrv = document.getElementById("ctrv");
+
+//直接関数を記述して登録する
+ctrv.addEventListener( "click" , function () {
+seisei('CTRL+Vビューワ','./ctrv/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var thumb = document.getElementById("thumb");
+
+//直接関数を記述して登録する
+thumb.addEventListener( "click" , function () {
+seisei('動画⇒サムネイル','./thumb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mdpn = document.getElementById("mdpn");
+
+//直接関数を記述して登録する
+mdpn.addEventListener( "click" , function () {
+seisei('MD⇒PNG','./mdpn/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var clck = document.getElementById("clck");
+
+//直接関数を記述して登録する
+clck.addEventListener( "click" , function () {
+seisei('アナログ時計','./clck/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var qrgn = document.getElementById("qrgn");
+
+//直接関数を記述して登録する
+qrgn.addEventListener( "click" , function () {
+seisei('QR生成','./qrgn/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var qrrd = document.getElementById("qrrd");
+
+//直接関数を記述して登録する
+qrrd.addEventListener( "click" , function () {
+seisei('QRリーダー','./qrrd/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var wallp = document.getElementById("wallp");
+
+//直接関数を記述して登録する
+wallp.addEventListener( "click" , function () {
+seisei('壁紙生成','./wallp/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var limv = document.getElementById("limv");
+
+//直接関数を記述して登録する
+limv.addEventListener( "click" , function () {
+seisei('ローカル画像ビューワ','./limv/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var kaimo = document.getElementById("kaimo");
+
+//直接関数を記述して登録する
+kaimo.addEventListener( "click" , function () {
+seisei('買い物リスト','./kaimo/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var pnsv = document.getElementById("pnsv");
+
+//直接関数を記述して登録する
+pnsv.addEventListener( "click" , function () {
+seisei('PNG to SVG','./pnsv/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var svpn = document.getElementById("svpn");
+
+//直接関数を記述して登録する
+svpn.addEventListener( "click" , function () {
+seisei('SVG to PNG','./svpn/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var tmer = document.getElementById("tmer");
+
+//直接関数を記述して登録する
+tmer.addEventListener( "click" , function () {
+seisei('タイマー','./tmer/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var trollo = document.getElementById("trollo");
+
+//直接関数を記述して登録する
+trollo.addEventListener( "click" , function () {
+seisei('trollo','./trollo/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var memory = document.getElementById("memory");
+
+//直接関数を記述して登録する
+memory.addEventListener( "click" , function () {
+seisei('メモリーカード','./memory/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var writt = document.getElementById("writt");
+
+//直接関数を記述して登録する
+writt.addEventListener( "click" , function () {
+seisei('Writt','./writt/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var plgr = document.getElementById("plgr");
+
+//直接関数を記述して登録する
+plgr.addEventListener( "click" , function () {
+seisei('プレイグラウンド','./plgr/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var pdfb = document.getElementById("pdfb");
+
+//直接関数を記述して登録する
+pdfb.addEventListener( "click" , function () {
+seisei('PDF表示B','./pdfb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var ocra = document.getElementById("ocra");
+
+//直接関数を記述して登録する
+ocra.addEventListener( "click" , function () {
+seisei('OCRA','./ocra/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var noteb = document.getElementById("noteb");
+
+//直接関数を記述して登録する
+noteb.addEventListener( "click" , function () {
+seisei('ノートパッド','./noteb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mdiff = document.getElementById("mdiff");
+
+//直接関数を記述して登録する
+mdiff.addEventListener( "click" , function () {
+seisei('DIFF','./mdiff/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var immj = document.getElementById("immj");
+
+//直接関数を記述して登録する
+immj.addEventListener( "click" , function () {
+seisei('画像文字入れ','./immj/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var fotoa = document.getElementById("fotoa");
+
+//直接関数を記述して登録する
+fotoa.addEventListener( "click" , function () {
+seisei('画像編集A','./fotoa/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var stick = document.getElementById("stick");
+
+//直接関数を記述して登録する
+stick.addEventListener( "click" , function () {
+seisei('ふせんメモ','./stick/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var carb = document.getElementById("carb");
+
+//直接関数を記述して登録する
+carb.addEventListener( "click" , function () {
+seisei('カレンダー２','./carb/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mona = document.getElementById("mona");
+
+//直接関数を記述して登録する
+mona.addEventListener( "click" , function () {
+seisei('Monacoエディタ','./mona/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var yrep = document.getElementById("yrep");
+
+//直接関数を記述して登録する
+yrep.addEventListener( "click" , function () {
+seisei('YouTube無限再生','./yrep/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var remi = document.getElementById("remi");
+
+//直接関数を記述して登録する
+remi.addEventListener( "click" , function () {
+seisei('リマインダー','./remi/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var rdtm = document.getElementById("rdtm");
+
+//直接関数を記述して登録する
+rdtm.addEventListener( "click" , function () {
+seisei('原稿読上げ時間測定','./rdtm/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var tetr = document.getElementById("tetr");
+
+//直接関数を記述して登録する
+tetr.addEventListener( "click" , function () {
+seisei('テトリス','./tetr/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var scap = document.getElementById("scap");
+
+//直接関数を記述して登録する
+scap.addEventListener( "click" , function () {
+seisei('スクリーンショット','./scap/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var block = document.getElementById("block");
+
+//直接関数を記述して登録する
+block.addEventListener( "click" , function () {
+seisei('Blockly','./block/demos/code/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var srec = document.getElementById("srec");
+
+//直接関数を記述して登録する
+srec.addEventListener( "click" , function () {
+seisei('スクリーンレコーダー','./srec/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var wiki = document.getElementById("wiki");
+
+//直接関数を記述して登録する
+wiki.addEventListener( "click" , function () {
+seisei('ウイキペディア','./wiki/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+// var thum = document.getElementById("thum");
+
+// //直接関数を記述して登録する
+// thum.addEventListener( "click" , function () {
+// seisei('動画⇒サムネイル','./thum/index.html');
+// } , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var aim = document.getElementById("aim");
+
+//直接関数を記述して登録する
+aim.addEventListener( "click" , function () {
+seisei('MP4+MP3プレーヤー','./aim/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var treem = document.getElementById("treem");
+
+//直接関数を記述して登録する
+treem.addEventListener( "click" , function () {
+seisei('ツリーメモ','./treem/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mock = document.getElementById("mock");
+
+//直接関数を記述して登録する
+mock.addEventListener( "click" , function () {
+seisei('モック作成ツール','./mock/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var voice = document.getElementById("voice");
+
+//直接関数を記述して登録する
+voice.addEventListener( "click" , function () {
+seisei('録音','./voice/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+
+//------- frame start ------------
+
+var camera = document.getElementById("camera");
+
+//直接関数を記述して登録する
+camera.addEventListener( "click" , function () {
+seisei('カメラ','./camera/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var textpad = document.getElementById("textpad");
+
+//直接関数を記述して登録する
+textpad.addEventListener( "click" , function () {
+seisei('簡易メモ','./textpad/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var rotate = document.getElementById("rotate");
+
+//直接関数を記述して登録する
+rotate.addEventListener( "click" , function () {
+seisei('画像リサイズ回転','./rotate/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var gifmake = document.getElementById("gifmake");
+
+//直接関数を記述して登録する
+gifmake.addEventListener( "click" , function () {
+seisei('アニメGIFツール','./gifmake/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var kuro = document.getElementById("kuro");
+
+//直接関数を記述して登録する
+kuro.addEventListener( "click" , function () {
+seisei('色塗潰し＋クロップツール','./kuro/index.html');
+} , false );
+
+//------- frame end ------------
+
+//------- frame start ------------
+
+var exif = document.getElementById("exif");
+
+//直接関数を記述して登録する
+exif.addEventListener( "click" , function () {
+seisei('Exif表示ツール','./exif/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var helptbl = document.getElementById("helptbl");
+
+//直接関数を記述して登録する
+helptbl.addEventListener( "click" , function () {
+seisei('ヘルプテーブル','./helptbl/index.html');
+} , false );
+
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var pdf = document.getElementById("pdf");
+
+//直接関数を記述して登録する
+pdf.addEventListener( "click" , function () {
+seisei('簡易PDFビューワ','./pdf/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var tegaki = document.getElementById("tegaki");
+
+//直接関数を記述して登録する
+tegaki.addEventListener( "click" , function () {
+seisei('手書きメモ','./tegaki/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var local = document.getElementById("local");
+
+//直接関数を記述して登録する
+local.addEventListener( "click" , function () {
+seisei('ローカルストレージ','./local/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mdrdr = document.getElementById("mdrdr");
+
+//直接関数を記述して登録する
+mdrdr.addEventListener( "click" , function () {
+seisei('マークダウンリーダ','./mdrdr/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var speech = document.getElementById("speech");
+
+//直接関数を記述して登録する
+speech.addEventListener( "click" , function () {
+seisei('音声メモ','./webspeech/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var sql = document.getElementById("sql");
+
+//直接関数を記述して登録する
+sql.addEventListener( "click" , function () {
+seisei('SQL テスト環境','./sql/arasql002.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var photob = document.getElementById("photob");
+
+//直接関数を記述して登録する
+photob.addEventListener( "click" , function () {
+seisei('Photo Editor2','./photo2/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var zoom = document.getElementById("zoom");
+
+//直接関数を記述して登録する
+zoom.addEventListener( "click" , function () {
+seisei('Zoom','./zoom/grassindex.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var omap = document.getElementById("omap");
+
+//直接関数を記述して登録する
+omap.addEventListener( "click" , function () {
+seisei('地図検索','./leafm/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var audio = document.getElementById("audio");
+
+//直接関数を記述して登録する
+audio.addEventListener( "click" , function () {
+seisei('mp3プレーヤ','./audio/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var timg = document.getElementById("timg");
+
+//直接関数を記述して登録する
+timg.addEventListener( "click" , function () {
+seisei('imageエディタ','./image/timg/timg.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var calc = document.getElementById("calc");
+
+//直接関数を記述して登録する
+calc.addEventListener( "click" , function () {
+seisei('電卓','./memory-first-calculator/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var bsed = document.getElementById("bsed");
+
+//直接関数を記述して登録する
+bsed.addEventListener( "click" , function () {
+seisei('BASIC!エディタ','./acebs/acebas.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var slmk = document.getElementById("slmk");
+
+//直接関数を記述して登録する
+slmk.addEventListener( "click" , function () {
+seisei('スライドメーカ','./slidemake/remarkset3.html');
+} , false );
+
+//------- frame end ------------
+
+//------- frame start ------------
+
+var pyed = document.getElementById("pyed");
+
+//直接関数を記述して登録する
+pyed.addEventListener( "click" , function () {
+seisei('Pythonエディタ','./acepy/acepython3pro.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var jsex = document.getElementById("jsex");
+
+//直接関数を記述して登録する
+jsex.addEventListener( "click" , function () {
+seisei('JS簡易実行環境','https://tokyopwa.bitbucket.io/jstest/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var jsed = document.getElementById("jsed");
+
+//直接関数を記述して登録する
+jsed.addEventListener( "click" , function () {
+seisei('JSエディタ','./acejs/acejs3pro.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var txed = document.getElementById("txed");
+
+//直接関数を記述して登録する
+txed.addEventListener( "click" , function () {
+seisei('テキストエディタ','./acetx/acetx3pro.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var imgur = document.getElementById("imgur");
+
+//直接関数を記述して登録する
+imgur.addEventListener( "click" , function () {
+seisei('画像アップ(imgur)','./imgurupload/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+//var news = document.getElementById("news");
+
+//直接関数を記述して登録する
+//news.addEventListener( "click" , function () {
+// seisei('ニュース検索','./newsp/index.html');
+//} , false );
+
+
+//------- frame end ------------
+
+//------- frame start ------------
+
+var cal = document.getElementById("cal");
+
+//直接関数を記述して登録する
+cal.addEventListener( "click" , function () {
+seisei('カレンダー','./calendar/index.html');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var mded = document.getElementById("mded");
+
+//直接関数を記述して登録する
+mded.addEventListener( "click" , function () {
+seisei('MDエディター','./mditor/mded3x.html');
+} , false );
+
+//------- frame end ------------
+
+//------- frame start ------------
+
+var bing = document.getElementById("bing");
+
+//直接関数を記述して登録する
+bing.addEventListener( "click" , function () {
+seisei('ネット検索','https://bing.com');
+} , false );
+
+//------- frame end ------------
+
+
+//------- frame start ------------
+
+var about = document.getElementById("about");
+
+//直接関数を記述して登録する
+about.addEventListener( "click" , function () {
+
+jsPanel.modal.create({
+headerTitle: 'SF-OSについて',
+content: '<div class="modalsfos"><img src="sfos.png"><hr>SF-OSは偽物のOSです。単なるデスクトップ遊びです</div>',
+position: 'center 50 50', theme: 'info'});
+
+
+} , false );
+
+
+//------- frame end ------------
+
+// repaのツールチップ入れ替え
+
+var repatooltipkey = 'repatooltipkey2022041001';
+
+var repatooltiparea = window.localStorage.getItem(repatooltipkey);
+
+if (repatooltiparea == null) {
+console.log("ローカルストレージにrepa tooltip情報なし");
+localStorage.setItem(repatooltipkey, 'none');
+} else {
+if (repatooltiparea == "") {
+console.log("ローカルストレージにrepa tooltip情報が空");
+localStorage.setItem(repatooltipkey, 'none');
+} else {
+if (repatooltiparea != "none") {
+console.log("ローカルストレージよりrepa tooltip情報取得");
+} else {
+console.log("ローカルストレージよりrepa tooltip情報none取得");
+};
+};
+};
+
+function repaTooltipChange(){
+var repatooltipname = window.localStorage.getItem(repatooltipkey);
+if (repatooltipname != 'none') {
+document.querySelector('#repa').setAttribute('data-tooltip',repatooltipname)
+console.log('repa ツールチップ個別設定あり');
+} else {
+console.log('repa ツールチップ個別設定なし');
+document.querySelector('#repa').setAttribute('data-tooltip','Repl.itアプリA')
+
+};
+}
+
+repaTooltipChange();
+
+setInterval(repaTooltipChange, 2000);
+
+// repbのツールチップ入れ替え
+
+var repbtooltipkey = 'repbtooltipkey2022041001';
+
+var repbtooltiparea = window.localStorage.getItem(repbtooltipkey);
+
+if (repbtooltiparea == null) {
+console.log("ローカルストレージにrepb tooltip情報なし");
+localStorage.setItem(repbtooltipkey, 'none');
+} else {
+if (repbtooltiparea == "") {
+console.log("ローカルストレージにrepb tooltip情報が空");
+localStorage.setItem(repbtooltipkey, 'none');
+} else {
+if (repbtooltiparea != "none") {
+console.log("ローカルストレージよりrepb tooltip情報取得");
+} else {
+console.log("ローカルストレージよりrepb tooltip情報none取得");
+};
+};
+};
+
+function repbTooltipChange(){
+var repbtooltipname = window.localStorage.getItem(repbtooltipkey);
+if (repbtooltipname != 'none') {
+document.querySelector('#repb').setAttribute('data-tooltip',repbtooltipname)
+console.log('repb ツールチップ個別設定あり');
+} else {
+console.log('repb ツールチップ個別設定なし');
+document.querySelector('#repb').setAttribute('data-tooltip','Repl.itアプリB')
+
+};
+}
+
+repbTooltipChange();
+
+setInterval(repbTooltipChange, 2000);
+
+// repcのツールチップ入れ替え
+
+var repctooltipkey = 'repctooltipkey2022041001';
+
+var repctooltiparea = window.localStorage.getItem(repctooltipkey);
+
+if (repctooltiparea == null) {
+console.log("ローカルストレージにrepc tooltip情報なし");
+localStorage.setItem(repctooltipkey, 'none');
+} else {
+if (repctooltiparea == "") {
+console.log("ローカルストレージにrepc tooltip情報が空");
+localStorage.setItem(repctooltipkey, 'none');
+} else {
+if (repctooltiparea != "none") {
+console.log("ローカルストレージよりrepc tooltip情報取得");
+} else {
+console.log("ローカルストレージよりrepc tooltip情報none取得");
+};
+};
+};
+
+function repcTooltipChange(){
+var repctooltipname = window.localStorage.getItem(repctooltipkey);
+if (repctooltipname != 'none') {
+document.querySelector('#repc').setAttribute('data-tooltip',repctooltipname)
+console.log('repc ツールチップ個別設定あり');
+} else {
+console.log('repc ツールチップ個別設定なし');
+document.querySelector('#repc').setAttribute('data-tooltip','Repl.itアプリC')
+
+};
+}
+
+repcTooltipChange();
+
+setInterval(repcTooltipChange, 2000);
+
+
+
+
+// cdpaのツールチップ入れ替え
+
+var cdp1tooltipkey = 'cdp1tooltipkey2022041001';
+
+var cdp1tooltiparea = window.localStorage.getItem(cdp1tooltipkey);
+
+if (cdp1tooltiparea == null) {
+console.log("ローカルストレージにcodepen1 tooltip情報なし");
+localStorage.setItem(cdp1tooltipkey, 'none');
+} else {
+if (cdp1tooltiparea == "") {
+console.log("ローカルストレージにcodepen1 tooltip情報が空");
+localStorage.setItem(cdp1tooltipkey, 'none');
+} else {
+if (cdp1tooltiparea != "none") {
+console.log("ローカルストレージよりcodepen1 tooltip情報取得");
+} else {
+console.log("ローカルストレージよりcodepen1 tooltip情報none取得");
+};
+};
+};
+
+function cdp1TooltipChange(){
+var cdp1tooltipname = window.localStorage.getItem(cdp1tooltipkey);
+if (cdp1tooltipname != 'none') {
+document.querySelector('#cdpa').setAttribute('data-tooltip',cdp1tooltipname)
+console.log('cdpa ツールチップ個別設定あり');
+} else {
+console.log('cdpa ツールチップ個別設定なし');
+document.querySelector('#cdpa').setAttribute('data-tooltip','Codepenアプリ1')
+
+};
+}
+
+cdp1TooltipChange();
+
+setInterval(cdp1TooltipChange, 2000);
+
+// cdpbのツールチップ入れ替え
+
+var cdp2tooltipkey = 'cdp2tooltipkey2022041001';
+
+var cdp2tooltiparea = window.localStorage.getItem(cdp2tooltipkey);
+
+if (cdp2tooltiparea == null) {
+console.log("ローカルストレージにcodepen2 tooltip情報なし");
+localStorage.setItem(cdp2tooltipkey, 'none');
+} else {
+if (cdp2tooltiparea == "") {
+console.log("ローカルストレージにcodepen2 tooltip情報が空");
+localStorage.setItem(cdp2tooltipkey, 'none');
+} else {
+if (cdp2tooltiparea != "none") {
+console.log("ローカルストレージよりcodepen2 tooltip情報取得");
+} else {
+console.log("ローカルストレージよりcodepen2 tooltip情報none取得");
+};
+};
+};
+
+function cdp2TooltipChange(){
+var cdp2tooltipname = window.localStorage.getItem(cdp2tooltipkey);
+if (cdp2tooltipname != 'none') {
+document.querySelector('#cdpb').setAttribute('data-tooltip',cdp2tooltipname)
+console.log('cdpb ツールチップ個別設定あり');
+} else {
+console.log('cdpb ツールチップ個別設定なし');
+document.querySelector('#cdpb').setAttribute('data-tooltip','Codepenアプリ2')
+
+};
+}
+
+cdp2TooltipChange();
+
+setInterval(cdp2TooltipChange, 2000);
+
+// cdpcのツールチップ入れ替え
+
+var cdp3tooltipkey = 'cdp3tooltipkey2022041001';
+
+var cdp3tooltiparea = window.localStorage.getItem(cdp3tooltipkey);
+
+if (cdp3tooltiparea == null) {
+console.log("ローカルストレージにcodepen3 tooltip情報なし");
+localStorage.setItem(cdp3tooltipkey, 'none');
+} else {
+if (cdp3tooltiparea == "") {
+console.log("ローカルストレージにcodepen3 tooltip情報が空");
+localStorage.setItem(cdp3tooltipkey, 'none');
+} else {
+if (cdp3tooltiparea != "none") {
+console.log("ローカルストレージよりcodepen3 tooltip情報取得");
+} else {
+console.log("ローカルストレージよりcodepen3 tooltip情報none取得");
+};
+};
+};
+
+function cdp3TooltipChange(){
+var cdp3tooltipname = window.localStorage.getItem(cdp3tooltipkey);
+if (cdp3tooltipname != 'none') {
+document.querySelector('#cdpc').setAttribute('data-tooltip',cdp3tooltipname)
+console.log('cdpc ツールチップ個別設定あり');
+} else {
+console.log('cdpc ツールチップ個別設定なし');
+document.querySelector('#cdpc').setAttribute('data-tooltip','Codepenアプリ3')
+
+};
+}
+
+cdp3TooltipChange();
+
+setInterval(cdp3TooltipChange, 2000);
+
+
+
+// 背景画像の入り替え
+
+var desktopbgkey = 'desktopbgkey2022031501';
+
+var desktopbg = window.localStorage.getItem(desktopbgkey);
+
+if (desktopbg == null) {
+console.log("ローカルストレージに壁紙情報なし");
+localStorage.setItem(desktopbgkey, 'none');
+} else {
+if (desktopbg == "") {
+console.log("ローカルストレージに壁紙情報が空");
+localStorage.setItem(desktopbgkey, 'none');
+} else {
+if (desktopbg != "none") {
+console.log("ローカルストレージより壁紙情報取得");
+} else {
+console.log("ローカルストレージより壁紙情報none取得");
+};
+};
+};
+
+
+// ベータ版の切り替え
+
+var betaversionkey = 'betaversionkey2022031501';
+
+var betaversion = window.localStorage.getItem(betaversionkey);
+
+if (betaversion == null) {
+console.log("ローカルストレージにベータ版情報なし");
+localStorage.setItem(betaversionkey, 'none');
+} else {
+if (betaversion == "") {
+console.log("ローカルストレージにベータ版情報が空");
+localStorage.setItem(betaversionkey, 'none');
+} else {
+if (betaversion != "none") {
+console.log("ローカルストレージよりベータ版情報取得");
+} else {
+console.log("ローカルストレージよりベータ版情報none取得");
+};
+};
+};
+
+
+
+function backImgChange(){
+var wkdesktopbg = window.localStorage.getItem(desktopbgkey);
+var imgURL = [
+'architecture-2256489_1920.jpg',
+'japan-217878_1920.jpg',
+'kuala-lumpur-1820944_1920.jpg',
+'new-york-city-336475_1920.jpg',
+'maldives-3220702_1920.jpg',
+'polynesia-3021072_1920.jpg',
+'sea-1281685_1920.jpg',
+'young-woman-1745173_1920.jpg',
+'buildings-2297210_1920.jpg',
+'new-york-2699520_1920.jpg',
+'new-york-668616_1920.jpg',
+'burj-khalifa-2212978_1920.jpg'
+];
+if (wkdesktopbg != 'none') {
+imgURL = wkdesktopbg.split(',');
+console.log('壁紙個別設定あり');
+} else {
+console.log('壁紙個別設定なし');
+};
+var ImgResult = imgURL[Math.floor( Math.random() * imgURL.length )];
+console.log(ImgResult);
+document.body.style.backgroundImage = "url('" + ImgResult + "')";
+}
+
+backImgChange();
+
+setInterval(backImgChange, 300000);
+
+localStorage.setItem('sfos-app-flag20190219', 'none');
+
+function appcall(){
+// 未仕様
+var appinfo = localStorage.getItem('sfos-app-flag20190219');
+if (appinfo == 'none') {
+} else {
+localStorage.setItem('sfos-app-flag20190219', 'none');
+document.getElementById(appinfo).click();
+alert('別のアプリ'+appinfo+'が呼出されました');
+};
+}
+
+
+
+
+setInterval(appcall, 2000);
+
+// コンテキストメニュー　header用
+var favappkey = 'favappkey2022031501-4';
+var favapparr;
+
+var favapp = window.localStorage.getItem(favappkey);
+
+if (favapp == null) {
+console.log("ローカルストレージにお気に入りAPPなし");
+localStorage.setItem(favappkey, 'none');
+favapp = 'none';
+} else {
+if (favapp == "") {
+console.log("ローカルストレージにお気に入りAPPが空");
+localStorage.setItem(favappkey, 'none');
+favapp = 'none';
+} else {
+if (favapp != "none") {
+console.log("ローカルストレージよりお気に入りAPP取得");
+favapparr = JSON.parse(favapp);
+} else {
+console.log("ローカルストレージよりお気に入りAPPnone取得");
+};
+};
+};
+
+
+
+
+window.onload = function() {
+
+
+var iconareakey = 'iconkey2022031501';
+
+var iconarea = window.localStorage.getItem(iconareakey);
+
+if (iconarea == null) {
+console.log("ローカルストレージにアイコン情報なし");
+localStorage.setItem(iconareakey, 'none');
+} else {
+if (iconarea == "") {
+console.log("ローカルストレージにアイコン情報が空");
+localStorage.setItem(iconareakey, 'none');
+} else {
+if (iconarea != "none") {
+console.log("ローカルストレージよりアイコン情報取得");
+document.getElementById('iconarea').innerHTML = iconarea;
+} else {
+console.log("ローカルストレージよりアイコン情報none取得");
+};
+};
+};
+
+
+function iconareaset(){
+var iconareainfo = document.getElementById('iconarea').innerHTML;
+if (iconareainfo == '') {
+localStorage.setItem(iconareakey, 'none');
+} else {
+localStorage.setItem(iconareakey, document.getElementById('iconarea').innerHTML);
+console.log('iconarea dom set localstorage');
+};
+}
+
+setInterval(iconareaset, 1000);
+
+
+
+
+setTimeout(function(){
+
+document.querySelectorAll('.iconarea > .icon').forEach(function(el){
+console.log(el.id.replace(/\d+/g, ''));
+var motoid = el.id.replace(/\d+/g, '');
+//直接関数を記述して登録する
+el.addEventListener( "click" , function () {
+console.log(motoid);
+document.getElementById(motoid).click();
+} , false );
+
+});
+
+var hdflag = "";
+var drop = document.getElementById('iconarea');
+var trigger = document.querySelectorAll('.Header > .icon');
+trigger.forEach(function(drag) {
+
+// drag側
+drag.addEventListener('dragstart', function(e){
+hdflag = "y";
+target = e.target.cloneNode(true);
+}, false);
+
+});
+
+var trigger2 = document.querySelectorAll('.iconarea > .icon');
+trigger2.forEach(function(drag2) {
+
+// drag側
+drag2.addEventListener('dragstart', function(e){
+hdflag = "n";
+target = e.target;
+}, false);
+
+});
+
+
+
+
+
+// drop側
+drop.addEventListener('dragover', function(e){
+e.preventDefault();
+//console.log(target);
+//target = e.target;
+}, false);
+
+drop.addEventListener('dragleave', function(e){
+console.log('dragleave target:'+target);
+console.log('dragleave target.id:'+target.id);
+document.getElementById(target.id).remove();
+//target.remove();
+//target = e.target;
+}, false);
+
+
+drop.addEventListener('drop', function(e){
+e.preventDefault();
+console.log(target);
+target.style.left=e.pageX-24+"px";
+target.style.top=e.pageY-24+"px";
+target.style.position = 'fixed';
+//target.style.pointerEvents = "none";
+var sakuid=target.id;
+var motoid=target.id.replace(/\d+/g, '');
+target.id=target.id.replace(/\d+/g, '')+Date.now();
+var henid=target.id;
+console.log(target);
+
+if (sakuid.length < 11) {
+console.log('11ika');
+
+function fnc1(e){
+target = e.target;
+hdflag = "n";
+};
+target.addEventListener('dragstart', fnc1, false);
+
+e.target.appendChild(target);
+
+var dragicon = document.getElementById(henid);
+console.log(sakuid);
+
+console.log('ccc');
+
+function fnc2() {
+console.log(motoid);
+document.getElementById(motoid).click();
+};
+
+dragicon.addEventListener( "click" , fnc2 , false );
+dragicon.removeAttribute('data-tooltip');
+dragicon.classList.remove('iconhover');
+dragicon.classList.add('desktopicon');
+
+} else {
+
+if (hdflag == "n") {
+
+console.log('hd--n');
+
+function fnc1a(e){
+target = e.target;
+hdflag = "n";
+};
+target.addEventListener('dragstart', fnc1a, false);
+
+e.target.appendChild(target);
+
+var dragicon = document.getElementById(henid);
+dragicon.removeAttribute('data-tooltip');
+dragicon.classList.remove('iconhover');
+dragicon.classList.add('desktopicon');
+
+
+
+}
+
+};
+
+
+
+
+
+
+
+
+// if (sakuid.length > 10) {
+
+// document.getElementById(sakuid).removeEventListener('dragstart', fnc1, false);
+// document.getElementById(sakuid).removeEventListener( "click" , fnc2 , false );
+
+// };
+
+
+}, false);
+
+}, 2000);
+
+
+// コンテキストメニュー
+
+
+function contextm(){
+
+document.getElementById("iconarea").addEventListener('contextmenu',function (e){
+e.preventDefault();
+//マウスの位置をstyleへ設定（左上の開始位置を指定）
+var htmlwk = '<div class=\"quickhd\"><span class=\"quickmoji\">Quick Menu</span></div><ul>';
+htmlwk += '<li onclick=\"setdesktopbg()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;壁紙'+'</li>';
+htmlwk += '<li><details><summary onclick=\"setsumflg()\">&nbsp;外部アプリ設定</summary><ul>';
+htmlwk += '<li onclick=\"setcdp1name()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;Codepenアプリ1名称'+'</li>';
+htmlwk += '<li onclick=\"setcdp2name()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;Codepenアプリ2名称'+'</li>';
+htmlwk += '<li onclick=\"setcdp3name()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;Codepenアプリ3名称'+'</li>';
+htmlwk += '<li onclick=\"setrepaname()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;Repl.itアプリA名称'+'</li>';
+htmlwk += '<li onclick=\"setrepbname()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;Repl.itアプリB名称'+'</li>';
+htmlwk += '<li onclick=\"setrepcname()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;Repl.itアプリC名称'+'</li>';
+htmlwk += '</ul></details></li>';
+htmlwk += '<li onclick=\"setcur()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;カーソル'+'</li>';
+htmlwk += '<li onclick=\"reminder()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;リマインダー'+'</li>';
+htmlwk += '<li onclick=\"setbetaversion()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;ベータ版切替'+'</li>';
+htmlwk += '<li onclick=\"setterm()\">'+'<i class=\"fa-solid fa-terminal\"></i>&nbsp;ターミナル版切替'+'</li>';
+if (favapp != 'none') {
+htmlwk += '<hr>';
+favapparr.forEach(function(e){
+
+console.log(e.id);
+console.log(e.icon);
+console.log(e.name);
+var liwk = '<img src=\"'+e.icon;
+liwk += '\" width=\"20\" height=\"20\">';
+htmlwk += '<li onclick=\"cticon(\''+e.id+'\')\">'+liwk+'<span class=\"favmark\">&nbsp;★&nbsp;</span>'+e.name+'</li>';
+
+
+});
+
+
+htmlwk += '<hr>';
+
+}
+
+var triggerc = document.querySelectorAll('.Header > .icon');
+triggerc.forEach(function(icondata) {
+
+console.log(icondata.id);
+console.log(icondata.src.match(".+/(.+?)([\?#;].*)?$")[1]);
+console.log(icondata.getAttribute('data-tooltip'));
+var liwk = '<img src=\"'+icondata.src.match(".+/(.+?)([\?#;].*)?$")[1];
+liwk += '\" width=\"20\" height=\"20\">';
+htmlwk += '<li onclick=\"cticon(\''+icondata.id+'\')\">'+liwk+'&nbsp'+icondata.getAttribute('data-tooltip')+'</li>';
+
+
+});
+htmlwk += '</ul>';
+console.log(htmlwk);
+document.getElementById('contextmenu').innerHTML = htmlwk;
+document.getElementById('contextmenu').style.left=e.pageX+"px";
+document.getElementById('contextmenu').style.top=e.pageY+"px";
+//メニューをblockで表示させる
+document.getElementById('contextmenu').style.display="block";
+document.getElementById('contextmenu').scroll(0,0);
+});
+document.body.addEventListener('click',function (e){
+console.log('close context'+sumflg);
+if (sumflg == 'on') {
+sumflg = 'off';
+} else {
+//メニューをnoneで非表示にさせる
+document.getElementById('contextmenu').style.display="none";
+};
+});
+
+
+
+
+}
+
+contextm();
+
+
+// コンテキストメニュー header
+
+
+
+function contexth(){
+
+document.getElementById("horizontal_scroll").addEventListener('contextmenu',function (e){
+e.preventDefault();
+console.log(e.srcElement);
+console.log(e.srcElement.id);
+console.log(e.srcElement.src.match(".+/(.+?)([\?#;].*)?$")[1]);
+console.log(e.srcElement.getAttribute('data-tooltip'));
+
+var favappid = e.srcElement.id;
+var favappicon = e.srcElement.src.match(".+/(.+?)([\?#;].*)?$")[1];
+var favappname = e.srcElement.getAttribute('data-tooltip');
+var favappwk = JSON.stringify({id:favappid,icon:favappicon,name:favappname});
+var favappwkkey = 'favappwk20240527';
+localStorage.setItem(favappwkkey,favappwk);
+
+//マウスの位置をstyleへ設定（左上の開始位置を指定）
+var htmlwk = '<div class=\"quickhd\"><span class=\"quickmoji\">お気に入り Menu</span></div><ul>';
+htmlwk += '<li onclick=\"addfav()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;お気に入りに登録'+'</li>';
+htmlwk += '<li onclick=\"remfav()\">'+'<i class=\"fa-solid fa-gear\"></i>&nbsp;お気に入りから削除'+'</li>';
+htmlwk += '</ul>';
+console.log(htmlwk);
+document.getElementById('contextheader').innerHTML = htmlwk;
+document.getElementById('contextheader').style.left=e.pageX+"px";
+document.getElementById('contextheader').style.top=e.pageY+"px";
+//メニューをblockで表示させる
+document.getElementById('contextheader').style.display="block";
+document.getElementById('contextheader').scroll(0,0);
+});
+document.body.addEventListener('click',function (e){
+console.log('close context'+sumflg);
+//メニューをnoneで非表示にさせる
+document.getElementById('contextheader').style.display="none";
+});
+
+}
+
+contexth();
+
+
+
+
+}
+
+// お気に入り追加関数
+
+function addfav() {
+var favappwkkey = 'favappwk20240527';
+var addfavwk = JSON.parse(localStorage.getItem(favappwkkey));
+console.log(favapp);
+if (favapp == 'none') {
+favapparr = [];
+favapparr.push(addfavwk);
+console.log(favapparr)
+localStorage.setItem(favappkey,JSON.stringify(favapparr));
+favapp = JSON.stringify(favapparr)
+
+} else {
+addUniqueItem(favapparr,addfavwk);
+console.log(favapparr)
+localStorage.setItem(favappkey,JSON.stringify(favapparr));
+favapp = JSON.stringify(favapparr)
+
+}
+
+new Attention.Alert({
+title: '設定完了!',
+content: 'お気に入りを追加しました'
+});
+
+
+}
+
+function addUniqueItem(items, newItem) {
+// 配列内に同じidが存在するかどうかを確認
+const exists = items.some(item => item.id === newItem.id);
+
+// 存在しない場合は配列に追加
+if (!exists) {
+items.push(newItem);
+}
+
+return items;
+}
+
+// お気に入り削除関数
+
+function remfav() {
+var favappwkkey = 'favappwk20240527';
+var addfavwk = JSON.parse(localStorage.getItem(favappwkkey));
+console.log(favapp);
+if (favapp == 'none') {
+
+} else {
+removeItemById(favapparr,addfavwk.id);
+console.log(favapparr)
+if (favapparr.length == 0){
+localStorage.setItem(favappkey,'none');
+favapp = 'none';
+} else {
+localStorage.setItem(favappkey,JSON.stringify(favapparr));
+favapp = JSON.stringify(favapparr);
+};
+
+};
+
+new Attention.Alert({
+title: '設定完了!',
+content: 'お気に入りを削除しました'
+});
+
+
+
+}
+
+function removeItemById(items, id) {
+// 指定されたidを持つオブジェクトのインデックスを取得
+const index = items.findIndex(item => item.id === id);
+
+// インデックスが-1でない場合は、そのインデックスの要素を削除
+if (index !== -1) {
+items.splice(index, 1);
+}
+
+return items;
+}
+
+
+// コンテキストメニュー　クリック関数
+
+function cticon(iconid){
+console.log(iconid);
+document.getElementById(iconid).click();
+};
+
+// コンテキストメニュー　クリック関数
+
+function cticonm(iconid){
+console.log(iconid);
+document.getElementById(iconid).click();
+document.getElementById('modalmenu').close();
+};
+
+
+// 壁紙設定関数
+
+function setdesktopbg(){
+console.log('壁紙設定プロンプト');
+//var bgkka = prompt('個別設定する壁紙をカンマ区切りで指定',localStorage.getItem(desktopbgkey));
+new Attention.Prompt({
+title: 'Wallpaper指定',
+content: '壁紙URLをカンマ区切りで指定',
+placeholderText: localStorage.getItem(desktopbgkey),
+submitText: '壁紙更新',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 4) {
+new Attention.Alert({
+title: '設定中止!',
+content: '壁紙を更新しませんでした'
+});
+} else {
+localStorage.setItem(desktopbgkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: '壁紙を更新しました'
+});
+
+};
+backImgChange();
+
+}
+});
+};
+
+
+// ターミナル版変更関数
+
+function setterm() {
+location.href = 'indexterm.html';
+}
+
+// ベータ版変更関数
+
+function setbetaversion(){
+console.log('ベータ版変更プロンプト');
+//var bgkka = prompt('ベータ版のバージョンを指定',localStorage.getItem(betaversionkey));
+new Attention.Prompt({
+title: 'ベータ版切替指定',
+content: 'ベータ版のバージョンを指定',
+placeholderText: localStorage.getItem(betaversionkey),
+submitText: 'ベータ版に切替',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 4) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'ベータ版切替を中止しました'
+});
+} else {
+if (setvalue == 'none') {
+localStorage.setItem(betaversionkey,setvalue);
+new Attention.Alert({
+title: 'クリア',
+content: 'ベータ版切替情報をクリアしました'
+});
+} else {
+localStorage.setItem(betaversionkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'ベータ版に切替します'
+});
+location.href = setvalue + '.html';
+}
+};
+
+}
+});
+};
+
+
+
+// repaの名称入れ替え
+
+function setrepaname(){
+console.log('repa ツールチップ設定プロンプト');
+new Attention.Prompt({
+title: 'Repl.itアプリA 名前指定',
+content: 'アプリ名を指定',
+placeholderText: localStorage.getItem(repatooltipkey),
+submitText: 'アプリ名設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 2) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'アプリ名が短すぎます'
+});
+} else {
+localStorage.setItem(repatooltipkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'アプリ名を設定しました'
+});
+
+};
+repaTooltipChange();
+
+}
+});
+};
+
+// repbの名称入れ替え
+
+function setrepbname(){
+console.log('repb ツールチップ設定プロンプト');
+new Attention.Prompt({
+title: 'Repl.itアプリB 名前指定',
+content: 'アプリ名を指定',
+placeholderText: localStorage.getItem(repbtooltipkey),
+submitText: 'アプリ名設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 2) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'アプリ名が短すぎます'
+});
+} else {
+localStorage.setItem(repbtooltipkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'アプリ名を設定しました'
+});
+
+};
+repbTooltipChange();
+
+}
+});
+};
+
+// repcの名称入れ替え
+
+function setrepcname(){
+console.log('repc ツールチップ設定プロンプト');
+new Attention.Prompt({
+title: 'Repl.itアプリC 名前指定',
+content: 'アプリ名を指定',
+placeholderText: localStorage.getItem(repctooltipkey),
+submitText: 'アプリ名設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 2) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'アプリ名が短すぎます'
+});
+} else {
+localStorage.setItem(repctooltipkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'アプリ名を設定しました'
+});
+
+};
+repcTooltipChange();
+
+}
+});
+};
+
+
+function setsumflg(){
+console.log('summary flg設定');
+sumflg = 'on';
+};
+
+
+
+function setcdp1name(){
+console.log('cdpa ツールチップ設定プロンプト');
+new Attention.Prompt({
+title: 'Codepenアプリ１ 名前指定',
+content: 'アプリ名を指定',
+placeholderText: localStorage.getItem(cdp1tooltipkey),
+submitText: 'アプリ名設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 2) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'アプリ名が短すぎます'
+});
+} else {
+localStorage.setItem(cdp1tooltipkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'アプリ名を設定しました'
+});
+
+};
+cdp1TooltipChange();
+
+}
+});
+};
+
+function setcdp2name(){
+console.log('cdpb ツールチップ設定プロンプト');
+new Attention.Prompt({
+title: 'Codepenアプリ２ 名前指定',
+content: 'アプリ名を指定',
+placeholderText: localStorage.getItem(cdp2tooltipkey),
+submitText: 'アプリ名設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 2) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'アプリ名が短すぎます'
+});
+} else {
+localStorage.setItem(cdp2tooltipkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'アプリ名を設定しました'
+});
+
+};
+cdp2TooltipChange();
+
+}
+});
+};
+
+
+function setcdp3name(){
+console.log('cdpc ツールチップ設定プロンプト');
+new Attention.Prompt({
+title: 'Codepenアプリ３ 名前指定',
+content: 'アプリ名を指定',
+placeholderText: localStorage.getItem(cdp3tooltipkey),
+submitText: 'アプリ名設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 2) {
+new Attention.Alert({
+title: '設定中止!',
+content: 'アプリ名が短すぎます'
+});
+} else {
+localStorage.setItem(cdp3tooltipkey,setvalue);
+new Attention.Alert({
+title: '設定完了!',
+content: 'アプリ名を設定しました'
+});
+
+};
+cdp3TooltipChange();
+
+}
+});
+};
+
+window.addEventListener("load",function(){
+_magnifiedNormalSelectcur();
+_magnifiedNormalSelectcur_tag("li");
+_magnifiedNormalSelectcur_tag("p");
+_magnifiedNormalSelectcur_tag("button");
+_magnifiedNormalSelectcur_tag("input");
+_magnifiedNormalSelectcur_tag("a");
+_magnifiedNormalSelectcur_tag("h1");
+_magnifiedNormalSelectcur_tag("h2");
+_magnifiedNormalSelectcur_tag("h3");
+_magnifiedNormalSelectcur_tag("h4");
+_magnifiedNormalSelectcur_tag("h5");
+_magnifiedNormalSelectcur_tag("h6");
+
+});
+
+function setcur(){
+console.log('cursor設定プロンプト');
+new Attention.Prompt({
+title: 'カーソル種類番号指定',
+content: '番号-1:手、2:黄、3:黒、4:恐竜、5:白',
+placeholderText: '1-5を指定',
+submitText: 'カーソル設定',
+onSubmit: function(component, value) {
+var setvalue = value;
+if (value.length < 1) {
+new Attention.Alert({
+title: '設定中止!',
+content: '番号が短すぎます'
+});
+} else {
+_magnifiedNormalSelectcur();
+_magnifiedNormalSelectcur_tag("li");
+_magnifiedNormalSelectcur_tag("p");
+_magnifiedNormalSelectcur_tag("button");
+_magnifiedNormalSelectcur_tag("input");
+_magnifiedNormalSelectcur_tag("a");
+_magnifiedNormalSelectcur_tag("h1");
+_magnifiedNormalSelectcur_tag("h2");
+_magnifiedNormalSelectcur_tag("h3");
+_magnifiedNormalSelectcur_tag("h4");
+_magnifiedNormalSelectcur_tag("h5");
+_magnifiedNormalSelectcur_tag("h6");
+
+if (value == '1') {
+handapstani();
+handapstani_tag("li");
+handapstani_tag("p");
+handapstani_tag("button");
+handapstani_tag("input");
+handapstani_tag("a");
+handapstani_tag("h1");
+handapstani_tag("h2");
+handapstani_tag("h3");
+handapstani_tag("h4");
+handapstani_tag("h5");
+handapstani_tag("h6");
+};
+if (value == '2') {
+_3dgarrocur();
+_3dgarrocur_tag("li");
+_3dgarrocur_tag("p");
+_3dgarrocur_tag("button");
+_3dgarrocur_tag("input");
+_3dgarrocur_tag("a");
+_3dgarrocur_tag("h1");
+_3dgarrocur_tag("h2");
+_3dgarrocur_tag("h3");
+_3dgarrocur_tag("h4");
+_3dgarrocur_tag("h5");
+_3dgarrocur_tag("h6");
+};
+if (value == '3') {
+_windowsBlackXLNormalSelectcur();
+_windowsBlackXLNormalSelectcur_tag("li");
+_windowsBlackXLNormalSelectcur_tag("p");
+_windowsBlackXLNormalSelectcur_tag("button");
+_windowsBlackXLNormalSelectcur_tag("input");
+_windowsBlackXLNormalSelectcur_tag("a");
+_windowsBlackXLNormalSelectcur_tag("h1");
+_windowsBlackXLNormalSelectcur_tag("h2");
+_windowsBlackXLNormalSelectcur_tag("h3");
+_windowsBlackXLNormalSelectcur_tag("h4");
+_windowsBlackXLNormalSelectcur_tag("h5");
+_windowsBlackXLNormalSelectcur_tag("h6");
+};
+if (value == '4') {
+dinosau2ani();
+dinosau2ani_tag("li");
+dinosau2ani_tag("p");
+dinosau2ani_tag("button");
+dinosau2ani_tag("input");
+dinosau2ani_tag("a");
+dinosau2ani_tag("h1");
+dinosau2ani_tag("h2");
+dinosau2ani_tag("h3");
+dinosau2ani_tag("h4");
+dinosau2ani_tag("h5");
+dinosau2ani_tag("h6");
+};
+
+new Attention.Alert({
+title: '設定完了!',
+content: 'カーソルを設定しました'
+});
+
+};
+
+}
+});
+};
+
+// リマインダー
+
+var reminddatakey = 'reminddatakey2022041001';
+
+var reminddataarea = window.localStorage.getItem(reminddatakey);
+
+if (reminddataarea == null) {
+console.log('ローカルストレージにremind data情報なし');
+localStorage.setItem(reminddatakey, 'none');
+} else {
+if (reminddataarea == '') {
+console.log('ローカルストレージにremind data情報が空');
+localStorage.setItem(reminddatakey, 'none');
+} else {
+if (reminddataarea != 'none') {
+console.log('ローカルストレージよりremind data情報取得');
+} else {
+console.log('ローカルストレージよりremind data情報none取得');
+};
+};
+};
+
+
+
+function reminder(){
+
+var reminddatakey = 'reminddatakey2022041001';
+
+var reminddataarea = window.localStorage.getItem(reminddatakey);
+
+if (reminddataarea == null) {
+console.log('ローカルストレージにremind data情報なし');
+localStorage.setItem(reminddatakey, 'none');
+} else {
+if (reminddataarea == '') {
+console.log('ローカルストレージにremind data情報が空');
+localStorage.setItem(reminddatakey, 'none');
+} else {
+if (reminddataarea != 'none') {
+console.log('ローカルストレージよりremind data情報取得');
+} else {
+console.log('ローカルストレージよりremind data情報none取得');
+};
+};
+};
+
+var reminds = reminddataarea.split('\n');
+var dura = 3000;
+var toastflag = 0;
+
+if (reminds.length == 1) {
+if (reminds[0] == 'none') {
+ztoast('リマインダー通知はありません', {
+position: 'bottom-full',
+duration: 3000
+});
+}
+} else {
+
+reminds.forEach((remindItem) => {
+var remindParts = remindItem.split('\t');
+if (remindParts.length == 1){
+if (remindParts[0].length >= 2) {
+dura += 1000;
+toastflag = 1;
+ztoast(remindParts[0], {
+position: 'bottom-full',
+duration: dura
+});
+}
+};
+
+if (remindParts.length == 3){
+var tddate = new Date();
+var tdfmtdate = tddate.getFullYear() + '-' + ('0'+(tddate.getMonth()+1)).slice(-2) + '-' + ('0'+tddate.getDate()).slice(-2);
+if (tdfmtdate >= remindParts[1]) {
+if (tdfmtdate <= remindParts[2]) {
+
+dura += 1000;
+toastflag = 1;
+ztoast('【'+remindParts[2]+'】'+remindParts[0], {
+position: 'bottom-full',
+duration: dura
+});
+
+};
+};
+};
+
+
+});
+
+if (toastflag == 0) {
+ztoast('リマインダー通知対象はありません', {
+position: 'bottom-full',
+duration: 3000
+});
+
+};
+
+
+};
+};
+
+</script>
+<script src="https://cdn.jsdelivr.net/gh/janmarkuslanger/attention.js/dist/attention.js"></script>
+
+<script>
+const steps = [
+{
+title: "上部のアイコン一覧",
+content: "タップするとアプリが起動できます",
+target: "#horizontal_scroll",
+order: 1,
+},{
+title: "アプリアイコンの例１",
+content: "電卓アプリを起動するにはここをタップ",
+target: "#calc",
+order: 2
+},{
+title: "アプリアイコンの例2",
+content: "テキストエディタを起動するにはここをタップ",
+target: "#txed",
+order: 3
+},{
+title: "デスクトップ",
+content: "右クリックまたは長押しでサブメニュー表示できます<BR>パソコンだとアイコンをドラッグで置けます",
+target: "#dskdesc",
+order: 4
+}
+];
+
+const tg = new tourguide.TourGuideClient({
+
+steps: steps
+
+});
+
+tg.onAfterExit(()=>{
+reminder();
+document.getElementById('dskdesc').remove();
+});
+
+
+</script>
+
+</body>
+</html>
